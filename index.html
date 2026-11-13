@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizonte Azul Viagens | Explore o Mundo com Sofisticação</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configuração Personalizada do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        ocean: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                        sand: {
+                            50: '#fdfcfb',
+                            100: '#f9f6f0',
+                            200: '#f1ebe0',
+                            300: '#e5d9c3',
+                        },
+                        coral: {
+                            400: '#fb7185',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-sand-50 text-slate-800 font-sans antialiased selection:bg-coral-500 selection:text-white">
+
+    <!-- ================= NAVEGAÇÃO SUPERIOR ================= -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2.5 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-ocean-900 to-ocean-500 flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-compass text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-heading font-extrabold text-xl tracking-tight text-ocean-950 block leading-none">Horizonte<span class="text-coral-500">Azul</span></span>
+                        <span class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold">Viagens & Experiências</span>
+                    </div>
+                </a>
+
+                <!-- Links Desktop -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#destinos" class="text-sm font-medium text-slate-700 hover:text-coral-500 transition-colors">Destinos</a>
+                    <a href="#diferenciais" class="text-sm font-medium text-slate-700 hover:text-coral-500 transition-colors">Por que nós?</a>
+                    <a href="#depoimentos" class="text-sm font-medium text-slate-700 hover:text-coral-500 transition-colors">Depoimentos</a>
+                    <a href="#ofertas" class="text-sm font-medium text-slate-700 hover:text-coral-500 transition-colors">Ofertas VIP</a>
+                </nav>
+
+                <!-- Botões de Ação Desktop -->
+                <div class="hidden md:flex items-center gap-4">
+                    <button onclick="openConsultModal()" class="text-sm font-semibold text-ocean-900 hover:text-coral-600 transition-colors px-3 py-2">
+                        Falar com Consultor
+                    </button>
+                    <a href="#destinos" class="bg-coral-500 hover:bg-coral-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-md shadow-coral-500/25 transition-all hover:-translate-y-0.5">
+                        Explorar Pacotes
+                    </a>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" aria-label="Abrir Menu" class="p-2.5 rounded-xl text-ocean-950 hover:bg-sand-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-sand-200 px-4 pt-3 pb-6 space-y-3 shadow-xl">
+            <a href="#destinos" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-sand-100 hover:text-coral-500">Destinos em Destaque</a>
+            <a href="#diferenciais" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-sand-100 hover:text-coral-500">Nossos Diferenciais</a>
+            <a href="#depoimentos" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-sand-100 hover:text-coral-500">Depoimentos</a>
+            <a href="#ofertas" class="mobile-link block px-3 py-2.5 rounded-xl text-base font-medium text-slate-700 hover:bg-sand-100 hover:text-coral-500">Desconto Exclusivo</a>
+            <div class="pt-3 border-t border-sand-200 flex flex-col gap-2">
+                <button onclick="openConsultModal()" class="w-full py-3 rounded-xl border border-ocean-900 text-ocean-900 font-semibold text-sm">
+                    Atendimento Personalizado
+                </button>
+                <a href="#destinos" class="mobile-link w-full py-3 rounded-xl bg-coral-500 text-white text-center font-semibold text-sm shadow-md">
+                    Ver Todos os Destinos
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= SEÇÃO HERO ================= -->
+    <section class="relative pt-28 pb-20 lg:pt-36 lg:pb-32 overflow-hidden min-h-[90vh] flex items-center">
+        <!-- Imagem de Fundo com Overlay Gradiente -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=80" 
+                 alt="Praia paradisíaca com águas cristalinas" 
+                 onerror="this.src='https://placehold.co/1920x1080/0c4a6e/ffffff?text=Horizonte+Azul+Viagens'"
+                 class="w-full h-full object-cover object-center">
+            <div class="absolute inset-0 bg-gradient-to-r from-ocean-950/90 via-ocean-950/70 to-ocean-900/40"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-3xl">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-sand-100 text-xs sm:text-sm font-medium mb-6">
+                    <i class="fa-solid fa-sparkles text-coral-400"></i> Roteiros exclusivos sob medida para 2026/2027
+                </span>
+                
+                <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-6">
+                    Descubra lugares que transformam a sua <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-coral-400">forma de ver o mundo.</span>
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-slate-200 font-light mb-10 leading-relaxed max-w-2xl">
+                    De refúgios paradisíacos no litoral brasileiro a expedições culturais inesquecíveis. Cuidamos de cada detalhe para você apenas viver o momento.
+                </p>
+            </div>
+
+            <!-- Barra de Busca Interativa -->
+            <div class="bg-white rounded-3xl p-4 sm:p-6 shadow-2xl max-w-5xl border border-sand-200">
+                <form id="search-form" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+                    <!-- Campo Destino -->
+                    <div class="space-y-1.5">
+                        <label for="search-destination" class="block text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            <i class="fa-solid fa-location-dot text-coral-500 mr-1"></i> Para onde você vai?
+                        </label>
+                        <input type="text" id="search-destination" placeholder="Ex: Noronha, Maldivas, Patagônia..." 
+                               class="w-full px-4 py-3.5 rounded-2xl bg-sand-50 border border-sand-200 text-slate-800 placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:bg-white transition-all">
+                    </div>
+
+                    <!-- Campo Data -->
+                    <div class="space-y-1.5">
+                        <label for="search-date" class="block text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            <i class="fa-regular fa-calendar text-coral-500 mr-1"></i> Quando pretende ir?
+                        </label>
+                        <input type="date" id="search-date" 
+                               class="w-full px-4 py-3.5 rounded-2xl bg-sand-50 border border-sand-200 text-slate-800 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:bg-white transition-all">
+                    </div>
+
+                    <!-- Campo Viajantes -->
+                    <div class="space-y-1.5">
+                        <label for="search-guests" class="block text-xs font-bold uppercase tracking-wider text-slate-500 ml-1">
+                            <i class="fa-solid fa-user-group text-coral-500 mr-1"></i> Viajantes
+                        </label>
+                        <select id="search-guests" class="w-full px-4 py-3.5 rounded-2xl bg-sand-50 border border-sand-200 text-slate-800 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:bg-white transition-all">
+                            <option value="1 Adulto">1 Adulto (Solo)</option>
+                            <option value="2 Adultos" selected>2 Adultos (Casal)</option>
+                            <option value="Família (2 Adultos, 2 Crianças)">Família (4 pessoas)</option>
+                            <option value="Grupo (5+ pessoas)">Grupo (5+ pessoas)</option>
+                        </select>
+                    </div>
+
+                    <!-- Botão Buscar -->
+                    <div>
+                        <button type="submit" class="w-full py-3.5 px-6 rounded-2xl bg-coral-500 hover:bg-coral-600 active:scale-[0.98] text-white font-heading font-bold text-base shadow-lg shadow-coral-500/30 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass"></i> Buscar Roteiros
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Métricas Rápidas -->
+            <div class="mt-10 flex flex-wrap gap-6 sm:gap-12 text-white/90 text-sm">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-shield-halved text-coral-400 text-lg"></i>
+                    <span>Cancelamento flexível gratuito</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-star text-amber-400 text-lg"></i>
+                    <span>4.9/5 baseado em +12.000 viajantes</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-headset text-coral-400 text-lg"></i>
+                    <span>Suporte Concierge 24h em Português</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SEÇÃO DESTINOS POPULARES ================= -->
+    <section id="destinos" class="py-20 lg:py-28 bg-sand-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Cabeçalho e Filtros -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-coral-600 font-bold text-sm uppercase tracking-wider block mb-2">Curadoria Exclusiva</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-ocean-950">Destinos em Destaque</h2>
+                </div>
+
+                <!-- Botões de Filtro Interativos -->
+                <div id="filter-container" class="flex flex-wrap gap-2">
+                    <button data-filter="todos" class="filter-btn active px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-ocean-900 text-white shadow-md">
+                        Todos
+                    </button>
+                    <button data-filter="praia" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-sand-200 border border-sand-200">
+                        <i class="fa-solid fa-umbrella-beach mr-1.5 text-coral-500"></i>Praias & Ilhas
+                    </button>
+                    <button data-filter="aventura" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-sand-200 border border-sand-200">
+                        <i class="fa-solid fa-mountain mr-1.5 text-ocean-500"></i>Aventura & Natureza
+                    </button>
+                    <button data-filter="cultura" class="filter-btn px-5 py-2.5 rounded-full text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-sand-200 border border-sand-200">
+                        <i class="fa-solid fa-landmark mr-1.5 text-amber-600"></i>Cultura & História
+                    </button>
+                </div>
+            </div>
+
+            <!-- Grid de Cards de Destinos (Renderizado via JS) -->
+            <div id="destinations-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Os cards serão injetados dinamicamente aqui -->
+            </div>
+
+            <!-- Estado Vazio (Caso a busca não encontre nada) -->
+            <div id="empty-state" class="hidden text-center py-16 bg-white rounded-3xl border border-sand-200">
+                <div class="w-16 h-16 bg-sand-100 rounded-full flex items-center justify-center mx-auto mb-4 text-ocean-700 text-2xl">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <h3 class="font-heading font-bold text-xl text-ocean-950 mb-2">Nenhum destino encontrado</h3>
+                <p class="text-slate-500 mb-6">Não encontramos pacotes exatos para esse filtro, mas criamos roteiros sob medida!</p>
+                <button onclick="resetFilters()" class="px-6 py-3 rounded-full bg-ocean-900 text-white font-semibold text-sm hover:bg-ocean-800 transition-colors">
+                    Mostrar Todos os Destinos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SEÇÃO DIFERENCIAIS / BENEFÍCIOS ================= -->
+    <section id="diferenciais" class="py-20 lg:py-28 bg-white border-y border-sand-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-coral-600 font-bold text-sm uppercase tracking-wider block mb-2">A Experiência Horizonte Azul</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-ocean-950 mb-4">Por que viajar conosco?</h2>
+                <p class="text-slate-600 text-lg">Mais do que vender passagens e hotéis, desenhamos jornadas fluidas, seguras e memoráveis para cada perfil de viajante.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="p-8 rounded-3xl bg-sand-50 border border-sand-200 hover:border-ocean-300 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-ocean-100 text-ocean-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-ocean-700 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-ocean-950 mb-3">Roteiros Sob Medida</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Cada dia da sua viagem é planejado de acordo com o seu ritmo, interesses gastronômicos e estilo de hospedagem.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-8 rounded-3xl bg-sand-50 border border-sand-200 hover:border-coral-300 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-orange-100 text-coral-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-coral-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-ocean-950 mb-3">Concierge 24/7</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Imprevisto no voo ou quer uma reserva de última hora? Nossa equipe responde em minutos via WhatsApp, onde você estiver.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-8 rounded-3xl bg-sand-50 border border-sand-200 hover:border-ocean-300 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-ocean-100 text-ocean-700 flex items-center justify-center text-2xl mb-6 group-hover:bg-ocean-700 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-ocean-950 mb-3">Benefícios VIP</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Acesso a upgrades de quarto, café da manhã incluso, transfers privativos e experiências fechadas ao público geral.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="p-8 rounded-3xl bg-sand-50 border border-sand-200 hover:border-coral-300 hover:shadow-xl transition-all group">
+                    <div class="w-14 h-14 rounded-2xl bg-orange-100 text-coral-600 flex items-center justify-center text-2xl mb-6 group-hover:bg-coral-500 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-ocean-950 mb-3">Pagamento Facilitado</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Parcele sua viagem em até 12x sem juros no cartão ou aproveite descontos especiais para pagamentos via PIX.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SEÇÃO DEPOIMENTOS ================= -->
+    <section id="depoimentos" class="py-20 lg:py-28 bg-sand-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+                <div>
+                    <span class="text-coral-600 font-bold text-sm uppercase tracking-wider block mb-2">Histórias Reais</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-ocean-950">Quem viajou, recomenda</h2>
+                </div>
+                <div class="mt-4 md:mt-0 flex items-center gap-3 bg-white px-5 py-3 rounded-2xl shadow-sm border border-sand-200">
+                    <div class="flex text-amber-400 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-sm font-bold text-ocean-950">4.9 / 5.0</span>
+                    <span class="text-xs text-slate-500">(2.480 avaliações)</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Depoimento 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-sand-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 italic leading-relaxed mb-6">
+                            "Nossa lua de mel em Fernando de Noronha foi impecável. A pousada escolhida tinha uma vista surreal e todos os passeios de barco já estavam agendados sem nenhuma fila."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-sand-100">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80" 
+                             alt="Camila Mendes" 
+                             onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=CM'"
+                             class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-heading font-bold text-sm text-ocean-950">Camila & Rafael Mendes</h4>
+                            <span class="text-xs text-slate-500">São Paulo, SP • Viajaram para Noronha</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-sand-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 italic leading-relaxed mb-6">
+                            "Viajar em família para a Patagônia parecia complexo, mas a Horizonte Azul organizou transfers privativos e trilhas perfeitas para nossos filhos. Suporte nota mil!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-sand-100">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" 
+                             alt="Henrique Vasconcelos" 
+                             onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=HV'"
+                             class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-heading font-bold text-sm text-ocean-950">Henrique Vasconcelos</h4>
+                            <span class="text-xs text-slate-500">Curitiba, PR • Viajou para Patagônia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Depoimento 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-sand-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-700 italic leading-relaxed mb-6">
+                            "Conseguimos um pacote para a Costa Amalfitana com tarifas muito melhores do que pesquisando por conta própria, além de passeios gastronômicos inesquecíveis."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 pt-4 border-t border-sand-100">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" 
+                             alt="Beatriz Nogueira" 
+                             onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=BN'"
+                             class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-heading font-bold text-sm text-ocean-950">Beatriz Nogueira</h4>
+                            <span class="text-xs text-slate-500">Belo Horizonte, MG • Viajou para Itália</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SEÇÃO CTA / NEWSLETTER ================= -->
+    <section id="ofertas" class="py-20 px-4 sm:px-6 lg:px-8 bg-sand-50">
+        <div class="max-w-6xl mx-auto rounded-[2.5rem] bg-gradient-to-br from-ocean-950 via-ocean-900 to-ocean-800 p-8 sm:p-14 lg:p-16 relative overflow-hidden shadow-2xl">
+            <!-- Elementos Decorativos de Fundo -->
+            <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full bg-coral-500/20 blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-ocean-500/20 blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 text-white">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-coral-500/20 border border-coral-400/30 text-coral-300 text-xs font-bold uppercase tracking-wider mb-4">
+                        Clube Horizonte VIP
+                    </span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4">
+                        Ganhe <span class="text-coral-400">R$ 500 de desconto</span> na sua próxima viagem.
+                    </h2>
+                    <p class="text-ocean-100 text-base sm:text-lg font-light max-w-xl">
+                        Inscreva-se gratuitamente para receber tarifas secretas, alertas de passagens executivas e roteiros exclusivos antes de todo mundo.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <form id="newsletter-form" class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/15 space-y-4">
+                        <div>
+                            <label for="news-name" class="sr-only">Seu nome</label>
+                            <input type="text" id="news-name" required placeholder="Como podemos te chamar?" 
+                                   class="w-full px-4 py-3.5 rounded-2xl bg-white text-slate-800 placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-coral-500">
+                        </div>
+                        <div>
+                            <label for="news-email" class="sr-only">Seu melhor e-mail</label>
+                            <input type="email" id="news-email" required placeholder="Digite seu melhor e-mail" 
+                                   class="w-full px-4 py-3.5 rounded-2xl bg-white text-slate-800 placeholder-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-coral-500">
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-2xl bg-coral-500 hover:bg-coral-600 text-white font-heading font-bold text-base shadow-lg shadow-coral-500/30 transition-all hover:-translate-y-0.5">
+                            Resgatar Meu Voucher de R$ 500
+                        </button>
+                        <p class="text-[11px] text-center text-ocean-200">
+                            Livre de spam. Você pode cancelar sua inscrição a qualquer momento.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= RODAPÉ COMPLETO ================= -->
+    <footer class="bg-ocean-950 text-slate-300 pt-16 pb-10 border-t border-ocean-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-ocean-900">
+                <!-- Coluna 1: Marca -->
+                <div class="space-y-4">
+                    <a href="#" class="flex items-center gap-2.5">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-ocean-600 to-coral-500 flex items-center justify-center text-white">
+                            <i class="fa-solid fa-compass text-xl"></i>
+                        </div>
+                        <span class="font-heading font-extrabold text-xl text-white">Horizonte<span class="text-coral-500">Azul</span></span>
+                    </a>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Transformando sonhos em roteiros extraordinários desde 2014. Agência certificada Cadastur e IATA com atendimento humanizado em todo o Brasil.
+                    </p>
+                    <div class="flex gap-3 pt-2">
+                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-ocean-900 hover:bg-coral-500 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-ocean-900 hover:bg-coral-500 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full bg-ocean-900 hover:bg-coral-500 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="#" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-ocean-900 hover:bg-coral-500 text-white flex items-center justify-center transition-colors">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Destinos -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-base mb-5">Destinos Populares</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#destinos" class="hover:text-coral-400 transition-colors">Fernando de Noronha, PE</a></li>
+                        <li><a href="#destinos" class="hover:text-coral-400 transition-colors">Lençóis Maranhenses, MA</a></li>
+                        <li><a href="#destinos" class="hover:text-coral-400 transition-colors">Bonito & Pantanal, MS</a></li>
+                        <li><a href="#destinos" class="hover:text-coral-400 transition-colors">Patagônia Chilena & Argentina</a></li>
+                        <li><a href="#destinos" class="hover:text-coral-400 transition-colors">Costa Amalfitana, Itália</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3: Institucional -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-base mb-5">Institucional</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#diferenciais" class="hover:text-coral-400 transition-colors">Sobre a Horizonte Azul</a></li>
+                        <li><a href="#depoimentos" class="hover:text-coral-400 transition-colors">Avaliações de Clientes</a></li>
+                        <li><a href="#" onclick="showToast('Política de Privacidade e LGPD atualizada para 2026.'); return false;" class="hover:text-coral-400 transition-colors">Política de Privacidade</a></li>
+                        <li><a href="#" onclick="showToast('Condições gerais de reserva e cancelamento flexível.'); return false;" class="hover:text-coral-400 transition-colors">Termos e Condições</a></li>
+                        <li><a href="#" onclick="openConsultModal(); return false;" class="hover:text-coral-400 transition-colors">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Contato -->
+                <div>
+                    <h4 class="font-heading font-bold text-white text-base mb-5">Central de Atendimento</h4>
+                    <ul class="space-y-3.5 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone text-coral-500 mt-1"></i>
+                            <span>0800 777 2026<br><span class="text-xs text-slate-400">Seg a Sáb das 08h às 21h</span></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-brands fa-whatsapp text-coral-500 mt-1 text-base"></i>
+                            <span>(11) 99876-5432<br><span class="text-xs text-slate-400">Plantão 24h para viajantes</span></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-regular fa-envelope text-coral-500 mt-1"></i>
+                            <span>contato@horizonteazul.com.br</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-coral-500 mt-1"></i>
+                            <span>Av. Brigadeiro Faria Lima, 3477 - Itaim Bibi, São Paulo - SP</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright & Formas de Pagamento -->
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-400">
+                <p>&copy; 2026 Horizonte Azul Viagens e Turismo Ltda. CNPJ: 12.345.678/0001-99. Todos os direitos reservados.</p>
+                <div class="flex items-center gap-3 text-lg text-slate-400">
+                    <span class="text-xs mr-1">Pagamentos seguros:</span>
+                    <i class="fa-brands fa-cc-visa hover:text-white transition-colors"></i>
+                    <i class="fa-brands fa-cc-mastercard hover:text-white transition-colors"></i>
+                    <i class="fa-brands fa-cc-amex hover:text-white transition-colors"></i>
+                    <i class="fa-brands fa-pix hover:text-white transition-colors" title="PIX"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================= MODAL DE DETALHES E RESERVA ================= -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-ocean-950/75 backdrop-blur-sm overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-sand-200 my-8 animate-[fadeIn_0.2s_ease-out]">
+            <!-- Imagem Topo Modal -->
+            <div class="relative h-56 sm:h-64">
+                <img id="modal-img" src="" alt="Destino" class="w-full h-full object-cover">
+                <button onclick="closeBookingModal()" aria-label="Fechar Modal" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 hover:bg-black/75 text-white flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="absolute bottom-4 left-6 bg-coral-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md" id="modal-duration">
+                    5 Dias / 4 Noites
+                </div>
+            </div>
+
+            <!-- Conteúdo Modal -->
+            <div class="p-6 sm:p-8">
+                <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+                    <div>
+                        <span id="modal-location" class="text-xs font-bold uppercase tracking-wider text-ocean-600 block">Brasil</span>
+                        <h3 id="modal-title" class="font-heading font-extrabold text-2xl sm:text-3xl text-ocean-950">Nome do Destino</h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs text-slate-500 block">A partir de</span>
+                        <span id="modal-price" class="font-heading font-extrabold text-2xl text-coral-600">R$ 0.000</span>
+                        <span class="text-[11px] text-slate-400 block">por pessoa em até 12x</span>
+                    </div>
+                </div>
+
+                <p id="modal-desc" class="text-slate-600 text-sm leading-relaxed mb-6">
+                    Descrição detalhada do roteiro.
+                </p>
+
+                <!-- O que está incluso -->
+                <div class="bg-sand-50 rounded-2xl p-4 mb-6 border border-sand-200">
+                    <h4 class="font-heading font-bold text-xs uppercase tracking-wider text-ocean-900 mb-3">O que está incluso neste pacote:</h4>
+                    <ul id="modal-includes" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-sm text-slate-700">
+                        <!-- Itens preenchidos via JS -->
+                    </ul>
+                </div>
+
+                <!-- Formulário Rápido de Pré-Reserva -->
+                <form id="modal-booking-form" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input type="text" id="book-name" required placeholder="Seu nome completo" class="w-full px-4 py-3 rounded-xl bg-sand-50 border border-sand-200 text-sm focus:outline-none focus:ring-2 focus:ring-ocean-500">
+                        <input type="tel" id="book-phone" required placeholder="Seu WhatsApp com DDD" class="w-full px-4 py-3 rounded-xl bg-sand-50 border border-sand-200 text-sm focus:outline-none focus:ring-2 focus:ring-ocean-500">
+                    </div>
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-coral-500 hover:bg-coral-600 text-white font-heading font-bold text-base shadow-lg shadow-coral-500/25 transition-all">
+                        Solicitar Reserva e Roteiro Completo
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================= TOAST / NOTIFICAÇÃO PERSONALIZADA (Substitui alert) ================= -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 max-w-sm w-full pointer-events-none flex flex-col gap-3 px-4 sm:px-0"></div>
+
+    <!-- ================= SCRIPTS DE INTERATIVIDADE ================= -->
+    <script>
+        // Base de dados dos destinos populares
+        const destinationsData = [
+            {
+                id: 1,
+                title: "Fernando de Noronha",
+                location: "Pernambuco, Brasil",
+                category: "praia",
+                categoryLabel: "Praias & Ilhas",
+                duration: "5 Dias / 4 Noites",
+                price: "R$ 4.890",
+                rating: "4.98",
+                reviews: 342,
+                image: "https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=900&q=80",
+                description: "Mergulhe nas águas mais cristalinas do Brasil. Hospedagem em pousada boutique com vista para o Morro do Pico, passeio de barco na Baía do Sancho e trilha guiada.",
+                includes: [
+                    "Passagem aérea ida e volta",
+                    "4 noites com café da manhã",
+                    "Passeio de barco privativo",
+                    "Transfer aeroporto / pousada"
+                ]
+            },
+            {
+                id: 2,
+                title: "Lençóis Maranhenses",
+                location: "Maranhão, Brasil",
+                category: "aventura",
+                categoryLabel: "Aventura & Natureza",
+                duration: "4 Dias / 3 Noites",
+                price: "R$ 3.250",
+                rating: "4.95",
+                reviews: 218,
+                image: "https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=900&q=80",
+                description: "Explore dunas infinitas e lagoas de água doce azul-turquesa em Barreirinhas e Atins. Inclui expedição 4x4 ao pôr do sol e passeio de lancha pelo Rio Preguiças.",
+                includes: [
+                    "Expedição 4x4 Lagoa Azul e Bonita",
+                    "3 noites em pousada charmosa",
+                    "Passeio de lancha até Caburé",
+                    "Guia local especializado"
+                ]
+            },
+            {
+                id: 3,
+                title: "Costa Amalfitana",
+                location: "Campânia, Itália",
+                category: "cultura",
+                categoryLabel: "Cultura & História",
+                duration: "7 Dias / 6 Noites",
+                price: "R$ 11.400",
+                rating: "4.99",
+                reviews: 415,
+                image: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=900&q=80",
+                description: "Encante-se com vilarejos coloridos encravados nos penhascos de Positano, Amalfi e Ravello. Degustação de vinhos locais, passeio de iate até Capri e gastronomia mediterrânea.",
+                includes: [
+                    "Hotéis 4 estrelas com vista mar",
+                    "Passeio de barco exclusivo em Capri",
+                    "Tour gastronômico e vinícola",
+                    "Transfers privativos em todo trecho"
+                ]
+            },
+            {
+                id: 4,
+                title: "Patagônia & Torres del Paine",
+                location: "Chile & Argentina",
+                category: "aventura",
+                categoryLabel: "Aventura & Natureza",
+                duration: "6 Dias / 5 Noites",
+                price: "R$ 8.790",
+                rating: "4.96",
+                reviews: 189,
+                image: "https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=900&q=80",
+                description: "Caminhe diante de glaciares milenares, montanhas imponentes e lagos esmeralda. Roteiro equilibrado entre trilhas panorâmicas e hotéis-refúgio de alto padrão.",
+                includes: [
+                    "Hospedagem em Eco-Lodge premium",
+                    "Navegação até o Glaciar Grey",
+                    "Ingressos aos Parques Nacionais",
+                    "Seguro viagem aventura incluso"
+                ]
+            },
+            {
+                id: 5,
+                title: "Ilhas Maldivas",
+                location: "Oceano Índico",
+                category: "praia",
+                categoryLabel: "Praias & Ilhas",
+                duration: "7 Dias / 6 Noites",
+                price: "R$ 16.900",
+                rating: "5.00",
+                reviews: 276,
+                image: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=900&q=80",
+                description: "Bangalôs sobre as águas cristalinas do Atol de Baa com sistema All-Inclusive de luxo. Ideal para celebrações românticas, mergulho com arraias e relaxamento absoluto.",
+                includes: [
+                    "Bangalô sobre as águas (Overwater)",
+                    "Sistema All-Inclusive Premium",
+                    "Transfer de hidroavião panorâmico",
+                    "Jantar romântico privativo na praia"
+                ]
+            },
+            {
+                id: 6,
+                title: "Kyoto & Monte Fuji",
+                location: "Japão",
+                category: "cultura",
+                categoryLabel: "Cultura & História",
+                duration: "8 Dias / 7 Noites",
+                price: "R$ 14.200",
+                rating: "4.97",
+                reviews: 310,
+                image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=900&q=80",
+                description: "Uma imersão na tradição milenar japonesa: templos dourados, florestas de bambu em Arashiyama, cerimônia do chá e hospedagem em Ryokan tradicional com águas termais.",
+                includes: [
+                    "Japan Rail Pass (trem-bala) incluso",
+                    "1 noite em Ryokan tradicional com Onsen",
+                    "Guia privativo falando português",
+                    "Cerimônia tradicional do chá"
+                ]
+            }
+        ];
+
+        // Elementos DOM
+        const gridEl = document.getElementById('destinations-grid');
+        const emptyStateEl = document.getElementById('empty-state');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const bookingModal = document.getElementById('booking-modal');
+
+        // Renderizar Cards de Destinos
+        function renderDestinations(items) {
+            gridEl.innerHTML = '';
+
+            if (items.length === 0) {
+                gridEl.classList.add('hidden');
+                emptyStateEl.classList.remove('hidden');
+                return;
+            }
+
+            gridEl.classList.remove('hidden');
+            emptyStateEl.classList.add('hidden');
+
+            items.forEach(dest => {
+                const card = document.createElement('article');
+                card.className = 'bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl border border-sand-200 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1';
+                
+                card.innerHTML = `
+                    <div>
+                        <!-- Imagem do Card -->
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="${dest.image}" 
+                                 alt="${dest.title}" 
+                                 onerror="this.src='https://placehold.co/800x600/0369a1/ffffff?text=${encodeURIComponent(dest.title)}'"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-md text-ocean-950 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-sm">
+                                ${dest.categoryLabel}
+                            </div>
+                            <div class="absolute top-4 right-4 bg-ocean-950/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-full flex items-center gap-1">
+                                <i class="fa-solid fa-star text-amber-400"></i> ${dest.rating} <span class="text-slate-300">(${dest.reviews})</span>
+                            </div>
+                        </div>
+
+                        <!-- Conteúdo do Card -->
+                        <div class="p-6">
+                            <div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+                                <span class="font-medium text-ocean-700"><i class="fa-solid fa-location-dot mr-1 text-coral-500"></i>${dest.location}</span>
+                                <span><i class="fa-regular fa-clock mr-1"></i>${dest.duration}</span>
+                            </div>
+                            
+                            <h3 class="font-heading font-bold text-xl text-ocean-950 mb-2 group-hover:text-coral-600 transition-colors">
+                                ${dest.title}
+                            </h3>
+                            
+                            <p class="text-slate-600 text-sm line-clamp-2 leading-relaxed">
+                                ${dest.description}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Rodapé do Card (Preço e Ação) -->
+                    <div class="px-6 pb-6 pt-4 border-t border-sand-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-[11px] uppercase tracking-wider text-slate-400 font-semibold block">Pacote a partir de</span>
+                            <span class="font-heading font-extrabold text-xl text-ocean-950">${dest.price}</span>
+                        </div>
+                        <button onclick="openBookingModal(${dest.id})" 
+                                class="px-5 py-2.5 rounded-xl bg-coral-500 hover:bg-coral-600 text-white text-sm font-semibold shadow-md shadow-coral-500/20 transition-all active:scale-95">
+                            Ver Detalhes
+                        </button>
+                    </div>
+                `;
+                gridEl.appendChild(card);
+            });
+        }
+
+        // Inicializar com todos os destinos
+        renderDestinations(destinationsData);
+
+        // Lógica de Filtros por Categoria
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Atualizar estilo ativo
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-ocean-900', 'text-white', 'shadow-md');
+                    b.classList.add('bg-white', 'text-slate-600', 'border', 'border-sand-200');
+                });
+                btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-sand-200');
+                btn.classList.add('bg-ocean-900', 'text-white', 'shadow-md');
+
+                const category = btn.getAttribute('data-filter');
+                if (category === 'todos') {
+                    renderDestinations(destinationsData);
+                } else {
+                    const filtered = destinationsData.filter(d => d.category === category);
+                    renderDestinations(filtered);
+                }
+            });
+        });
+
+        function resetFilters() {
+            document.getElementById('search-destination').value = '';
+            filterBtns[0].click();
+        }
+
+        // Lógica da Barra de Busca do Hero
+        document.getElementById('search-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const query = document.getElementById('search-destination').value.trim().toLowerCase();
+            const date = document.getElementById('search-date').value;
+            const guests = document.getElementById('search-guests').value;
+
+            // Rolar suavemente até a seção de destinos
+            document.getElementById('destinos').scrollIntoView({ behavior: 'smooth' });
+
+            if (!query) {
+                renderDestinations(destinationsData);
+                showToast(`Exibindo todos os pacotes disponíveis para ${guests}.`);
+                return;
+            }
+
+            const results = destinationsData.filter(d => 
+                d.title.toLowerCase().includes(query) || 
+                d.location.toLowerCase().includes(query) ||
+                d.categoryLabel.toLowerCase().includes(query)
+            );
+
+            // Resetar visual dos botões de categoria
+            filterBtns.forEach(b => {
+                b.classList.remove('bg-ocean-900', 'text-white', 'shadow-md');
+                b.classList.add('bg-white', 'text-slate-600', 'border', 'border-sand-200');
+            });
+
+            renderDestinations(results);
+            showToast(`Busca atualizada para "${query}" (${guests}).`);
+        });
+
+        // Menu Mobile Toggle
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Funções do Modal de Detalhes / Reserva
+        function openBookingModal(id) {
+            const dest = destinationsData.find(d => d.id === id);
+            if (!dest) return;
+
+            document.getElementById('modal-img').src = dest.image;
+            document.getElementById('modal-duration').textContent = dest.duration;
+            document.getElementById('modal-location').textContent = dest.location;
+            document.getElementById('modal-title').textContent = dest.title;
+            document.getElementById('modal-price').textContent = dest.price;
+            document.getElementById('modal-desc').textContent = dest.description;
+
+            const includesList = document.getElementById('modal-includes');
+            includesList.innerHTML = dest.includes.map(item => 
+                `<li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-ocean-600 text-xs"></i><span>${item}</span></li>`
+            ).join('');
+
+            bookingModal.classList.remove('hidden');
+            bookingModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function openConsultModal() {
+            // Abre o modal focado em consultoria personalizada usando o primeiro destino como base visual ou customizado
+            openBookingModal(1);
+            document.getElementById('modal-location').textContent = "Atendimento VIP Sob Medida";
+            document.getElementById('modal-title').textContent = "Roteiro Personalizado";
+            document.getElementById('modal-price').textContent = "Sob Consulta";
+            document.getElementById('modal-desc').textContent = "Preencha seus dados abaixo e um de nossos especialistas em viagens entrará em contato via WhatsApp em até 15 minutos para desenhar seu roteiro ideal.";
+        }
+
+        function closeBookingModal() {
+            bookingModal.classList.add('hidden');
+            bookingModal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        // Fechar modal ao clicar fora
+        bookingModal.addEventListener('click', (e) => {
+            if (e.target === bookingModal) {
+                closeBookingModal();
+            }
+        });
+
+        // Envio do Formulário do Modal
+        document.getElementById('modal-booking-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('book-name').value;
+            const title = document.getElementById('modal-title').textContent;
+            
+            closeBookingModal();
+            e.target.reset();
+            showToast(`Obrigado, ${name}! Recebemos seu interesse em "${title}". Um consultor falará com você em breve.`);
+        });
+
+        // Envio do Formulário da Newsletter
+        document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('news-name').value;
+            e.target.reset();
+            showToast(`Parabéns, ${name}! Seu cupom HORIZONTE500 foi enviado para o seu e-mail.`);
+        });
+
+        // Sistema de Notificação Toast (Substitui alert())
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'pointer-events-auto bg-ocean-950 text-white px-5 py-4 rounded-2xl shadow-2xl border border-ocean-800 flex items-start gap-3 transition-all duration-300 transform translate-y-2 opacity-0';
+            
+            toast.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-coral-500/20 text-coral-400 flex items-center justify-center shrink-0 mt-0.5">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="text-sm leading-snug flex-1">${message}</div>
+                <button onclick="this.parentElement.remove()" class="text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            `;
+
+            container.appendChild(toast);
+
+            // Animar entrada
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            // Remover automaticamente após 5 segundos
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
